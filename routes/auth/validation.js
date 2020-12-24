@@ -1,4 +1,4 @@
-exports.signIn = (res, req, next) => {
+exports.signIn = (req, res, next) => {
   const { username } = req.body;
 
   if (!username) {

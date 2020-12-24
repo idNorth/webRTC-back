@@ -1,3 +1,11 @@
-exports.signIn = async (res, req) => {
-  console.log(req);
+const resHandler = require ('../../helpers/respons');
+const errorMsg = require('../../helpers/errorMsg');
+
+exports.signIn = async (req, res) => {
+  try {
+
+    return resHandler(res, {})
+  } catch (err) {
+    return resHandler(res, {}, errorMsg.SomethingWentWrong, 400)
+  }
 }
