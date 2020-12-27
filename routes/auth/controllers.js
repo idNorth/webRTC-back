@@ -11,7 +11,7 @@ exports.signIn = async (req, res) => {
       .substr(2, 9)
       .toUpperCase();
 
-    const user = new User({ username, key });
+    const user = new User({ username, key, isActive: true });
     await user.save();
 
     const token = user.generateToken(user);

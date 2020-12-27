@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  isActive: {
+    type: Boolean,
+    default: false,
+  },
   createDate: {
     type: Date,
     default: Date.now,
