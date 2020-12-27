@@ -1,7 +1,7 @@
 const resHandler = require ('../../helpers/respons');
 const errorMsg = require('../../helpers/errorMsg');
 
-exports.signIn = (req, res, next) => {
+exports.login = (req, res, next) => {
   const { username } = req.body;
 
   if (!username) {
