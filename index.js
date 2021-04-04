@@ -3,9 +3,11 @@ const http = require('http');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const io = require('socket.io');
 
 const config = require('./config');
 const { getCommonApp } = require('./routes');
+const socketHandlers = require('./services/socket');
 
 const app = express();
 
@@ -23,5 +25,15 @@ app.use(bodyParser.json());
 app.use(getCommonApp());
 
 const server = http.createServer(app);
+
+global.websocket = io(server, {
+  path: '/api/socket.io',
+  pingTimeout: 10000,
+  upgradeTimeout: 5000
+});
+
+
+global.websocket
+  .on('connection', socketHandlers);
 
 server.listen(config.PORT, () => console.log(`server is running: ${config.PORT}`) )
