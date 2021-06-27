@@ -4,8 +4,9 @@ const User = require('../../models/user');
 const { IO_TYPES } = require('../../constants/socket');
 
 exports.getUsers = async (req, res) => {
+  const { id } = req.token;
   try {
-    const users = await User.find();
+    const users = await User.find({'_id': {$ne: id}});
 
     return resHandler(res, { users, total: users.length })
   } catch (err) {
